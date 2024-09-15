@@ -1,0 +1,21 @@
+# cifuzz:build-template:begin
+# cc_fuzz_test(
+#     name = "{{ .FuzzTestName }}",
+#     srcs = [
+#         "{{ .FileName }}",
+#     ],
+#     corpus = glob(
+#         ["{{ .FuzzTestName }}_inputs/**"],
+#         allow_empty = True,
+#     ) + select({
+#         "@cifuzz//:collect_coverage": glob([".{{ .FuzzTestName }}_cifuzz_corpus/**"], allow_empty = True),
+#         "//conditions:default": [],
+#     }),
+#     deps = [
+#         "//src:explore_me",
+#         "@cifuzz",
+#     ],
+# )
+# cifuzz:build-template:end
+
+load("@rules_fuzzing//fuzzing:cc_defs.bzl", "cc_fuzz_test")
